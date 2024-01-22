@@ -1,0 +1,28 @@
+POST http://localhost:3000/
+Content-Type: application/json
+
+{
+  "cessPercent": 4,
+  "regime": "OLD",
+  "financialYear": 19,
+  "residence": "Resident",
+  "type": "Individual",
+  "ageSlot": "60-",
+  "grossIncome": 500000,
+  "slab": [
+    {
+      "age": "60-",
+      "slab" : [
+        { "from": 0,       "to": 250000,  "percent": 0 },
+        { "from": 250000,  "to": 500000,  "percent": 5 },
+        { "from": 500000,  "to": 1000000, "percent": 20 },
+        { "from": 1000000, "to": null,    "percent": 30 }
+      ]
+    }
+  ],
+  "s80Cdeductions": 100000,
+  "rebateData": {
+    "limit" : 1000,
+    "max_rebate" : 1000
+  }
+}
