@@ -25,14 +25,17 @@ export class TaxcalcService {
     regime: RegimeType,
     age: number,
   ): Promise<AgeBasedTaxSlab> {
-    const regimeData =
-      SlabDataFactory.get(year)[regime] ??
-      throwError(new NotFoundException('Data not found for given regime'));
+    const regimeData = SlabDataFactory.get(year);
 
     return (
-      regimeData.find(({ ageSlot }) =>
-        SlabDataFactory.isAgeValidForSlot(ageSlot, age),
-      ) ?? throwError(new NotFoundException())
+      regimeData.find(
+        (o) =>
+          regime == o.regime &&
+          SlabDataFactory.isAgeValidForSlot(o.ageSlot, age),
+      ) ??
+      throwError(
+        new NotFoundException('Data not found for given regime & age type'),
+      )
     );
   }
 }

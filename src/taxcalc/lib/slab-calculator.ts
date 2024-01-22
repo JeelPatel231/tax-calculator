@@ -4,15 +4,19 @@ import { SlabDataFactory } from './slab-data-factory';
 import type { DataReturnType } from './transformation';
 import { BadRequestException } from '@nestjs/common';
 
-export type TaxSlabTransformDetails = Pick<TaxcalcRequestDto, 'slab' | 'age'>;
+export type TaxSlabTransformDetails = Pick<
+  TaxcalcRequestDto,
+  'slab' | 'age' | 'regime'
+>;
 
 export async function TaxSlabTransformation(
-  { slab, age }: TaxSlabTransformDetails,
+  { slab, age, regime }: TaxSlabTransformDetails,
   value: number,
 ): Promise<DataReturnType> {
   const slabForAge =
-    slab.find(({ ageSlot }) =>
-      SlabDataFactory.isAgeValidForSlot(ageSlot, age),
+    slab.find(
+      (o) =>
+        regime == o.regime && SlabDataFactory.isAgeValidForSlot(o.ageSlot, age),
     ) ??
     throwError(
       new BadRequestException('Invalid Slab Data supplied for given age.'),

@@ -56,6 +56,9 @@ export enum AgeType {
 }
 
 export class AgeBasedTaxSlab {
+  @IsEnum(RegimeType)
+  regime: RegimeType;
+
   @IsEnum(AgeType)
   ageSlot: AgeType;
 

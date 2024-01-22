@@ -11,6 +11,7 @@ Content-Type: application/json
   "grossIncome": 500000,
   "slab": [
     {
+      "regime" : "NEW",
       "ageSlot": "All",
       "slab" : [
         { "from": 0,       "to": 250000,  "percent": 0 },
