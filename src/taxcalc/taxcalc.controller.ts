@@ -33,6 +33,7 @@ export class TaxcalcController {
   }
 
   @Post('slab')
+  @HttpCode(200)
   async getSlabForYearAndRegime(
     @Body() { year, regime, age }: SlabRequestDto,
   ): Promise<AgeBasedTaxSlab> {
