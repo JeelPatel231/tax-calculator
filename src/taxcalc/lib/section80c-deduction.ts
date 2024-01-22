@@ -10,7 +10,7 @@ export type Section80CDeductionDetails = Pick<
   | 's80Cdeductions'
   | 'type'
   | 'residence'
-  | 'ageSlot'
+  | 'age'
   | 'grossIncome'
   | 'financialYear'
   | 'regime'

@@ -3,15 +3,15 @@ Content-Type: application/json
 
 {
   "cessPercent": 4,
-  "regime": "OLD",
+  "age": 50,
+  "regime": "NEW",
   "financialYear": 19,
   "residence": "Resident",
   "type": "Individual",
-  "ageSlot": "60-",
   "grossIncome": 500000,
   "slab": [
     {
-      "age": "60-",
+      "ageSlot": "All",
       "slab" : [
         { "from": 0,       "to": 250000,  "percent": 0 },
         { "from": 250000,  "to": 500000,  "percent": 5 },
@@ -22,7 +22,22 @@ Content-Type: application/json
   ],
   "s80Cdeductions": 100000,
   "rebateData": {
-    "limit" : 1000,
-    "max_rebate" : 1000
+    "limit": 700000,
+    "max_rebate" : 25000
   }
+}
+
+###
+GET http://localhost:3000/rebate/23
+
+
+
+###
+POST http://localhost:3000/slab/
+Content-Type: application/json
+
+{
+  "age": 12,
+  "regime" : "OLD",
+  "year" : 24
 }

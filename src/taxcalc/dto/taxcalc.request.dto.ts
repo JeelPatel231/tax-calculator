@@ -49,6 +49,7 @@ export enum TaxPayerType {
 }
 
 export enum AgeType {
+  All = 'All',
   LessThan60 = '60-', // 60 Not Included
   From60To80 = '60-80', // 60 and 80 Both included
   MoreThan80 = '80+', // 80 Not included
@@ -56,7 +57,7 @@ export enum AgeType {
 
 export class AgeBasedTaxSlab {
   @IsEnum(AgeType)
-  age: AgeType;
+  ageSlot: AgeType;
 
   @IsArray()
   @ValidateNested({ each: true })
@@ -100,8 +101,8 @@ export class TaxcalcRequestDto {
   @IsEnum(TaxPayerType)
   type: TaxPayerType;
 
-  @IsEnum(AgeType)
-  ageSlot: AgeType;
+  @IsPositiveNumber()
+  age: number;
 
   @IsPositiveNumber()
   grossIncome: number;
